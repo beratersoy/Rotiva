@@ -9,8 +9,6 @@ sys.path.insert(0, str(project_root))
 
 from data_scraper.event_manager import EventManager
 from rag_pipeline.rag_engine import RAGEngine
-from utils.kocaeli_suggestions import KOCAELI_GENERAL_SUGGESTIONS
-from utils.sakarya_suggestions import SAKARYA_GENERAL_SUGGESTIONS
 from utils.llm_client import OpenAIClient
 from utils.sheets_manager import SheetsManager
 from datetime import datetime, timedelta
@@ -603,11 +601,11 @@ def get_bot_response(user_msg, name=None, use_live=False, use_rag=True):
                 else:
                     msg += f"{i}. <b>{title}</b> - {location} - {date}<br>"
         else:
-            suggestions = KOCAELI_GENERAL_SUGGESTIONS if city=="Kocaeli" else SAKARYA_GENERAL_SUGGESTIONS
-            msg = f"{city} için {start_date} - {end_date} arasında etkinlik bulunamadı.<br>İşte bazı öneriler:<ul>"
-            for s in suggestions:
-                msg += f"<li>{s}</li>"
-            msg += "</ul>"
+            msg = f"🔍 {city} için {start_date} - {end_date} arasında etkinlik bulunamadı.<br><br>"
+            msg += "💡 <b>Alternatif öneriler:</b><br>"
+            msg += "• Tarih aralığını genişletmeyi deneyin<br>"
+            msg += "• 'Bu hafta sonu ne var?' gibi genel sorular sorun<br>"
+            msg += "• Belirli etkinlik türü sorun (konser, tiyatro, sinema)"
     
     elif city:
         events = manager.get_events_by_city(city)
@@ -623,11 +621,11 @@ def get_bot_response(user_msg, name=None, use_live=False, use_rag=True):
                 else:
                     msg += f"{i}. <b>{title}</b> - {location} - {date}<br>"
         else:
-            suggestions = KOCAELI_GENERAL_SUGGESTIONS if city=="Kocaeli" else SAKARYA_GENERAL_SUGGESTIONS
-            msg = f"{city} için etkinlik bulunamadı.<br>İşte bazı öneriler:<ul>"
-            for s in suggestions:
-                msg += f"<li>{s}</li>"
-            msg += "</ul>"
+            msg = f"🔍 {city} için şu anda etkinlik bulunamadı.<br><br>"
+            msg += "💡 <b>Neler deneyebilirsiniz:</b><br>"
+            msg += "• 'Bu hafta sonu ne var?' sorusu sorun<br>"
+            msg += "• Belirli tarih belirtin (örn: '25 Ekim'de ne var?')<br>"
+            msg += "• Farklı etkinlik türü deneyin (konser, tiyatro, sinema)"
     
     else:
         msg = "Lütfen şehir belirtin. (örn: 'Kocaeli'deki etkinlikleri listeler misin?' veya '19 ekimde Sakarya'da ne var?')"
