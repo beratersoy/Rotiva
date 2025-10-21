@@ -1,0 +1,30 @@
+# Web Scraping
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# Data Processing
+pandas>=1.5.0
+numpy>=1.24.0
+
+# NLP & Embedding (Proje Gereksinimi)
+scikit-learn>=1.3.0
+sentence-transformers>=2.2.0  # Embedding model (Huggingface)
+faiss-cpu>=1.7.4  # Vektor database (FAISS)
+
+# LLM & RAG Framework (Proje Gereksinimi)
+openai>=1.0.0
+google-generativeai>=0.3.0
+langchain>=0.1.0  # RAG pipeline framework
+langchain-google-genai>=0.0.6  # LangChain Gemini integration
+
+# Web Framework
+streamlit>=1.28.0
+
+# Google Sheets Integration
+gspread>=5.12.0
+oauth2client>=4.1.3
+
+# Utilities
+python-dotenv>=1.0.0
